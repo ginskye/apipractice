@@ -56,7 +56,7 @@ this.setState({
       for (var i =0; i < film.characters.length; i++){ //loop to put each character inside of the characters display array (l 55)
         characters.push(<p>{film.characters[i]}</p>)
       }
-      films.push(<div className="container">{film.title}<br></br>
+      films.push(<div className="container"><h1>{film.title}</h1><br></br>
       {film.description}<p></p> {/* <!---pushes title, image, then entire characters display array for each item in films (l 46)---> */}
       <img src={film.image}></img>
       
