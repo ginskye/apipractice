@@ -1,27 +1,29 @@
 .App {
   text-align: center;
-  display:inline-table;
+  display:flex;
   flex-direction: column;
   flex-flow:wrap;
- justify-content: space-between;
+ justify-content: space-around;
  align-items: flex-start;
 }
 
 img{
   max-height: 200px;
 }
-.people{
+/* .people{
   background-color: blueviolet;
   text-align: left;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 width: 200px;
 border-radius: 10%;
 border: solid 2px black;
-}
+} */
 .container{
 background-color: blue;
-text-align: left;
+text-align: center;
 width: 200px;
-border-radius: 10%;
 border: solid 2px lime;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
 }
