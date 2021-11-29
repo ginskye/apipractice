@@ -79,6 +79,7 @@ changeTurns(film, character){
         characters.push(<h4>{film.characters[i]} </h4>)
       }
       films.push(<div id={counter} className="container" onClick={()=>this.changeTurns(film, characters)}><h1>{film.title}</h1><br></br>
+      {film.release_date}<br></br>
       <p></p> {/* <!---pushes title, image, then entire characters display array for each item in films (l 46)---> */}
      <img src={film.image}></img> {this.showStuff(film)}<br></br>
         

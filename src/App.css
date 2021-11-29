@@ -5,16 +5,18 @@
   flex-flow:wrap;
  justify-content: space-around;
  align-items: flex-start;
- background-color: magenta;
+ background-color: rgb(68, 8, 68);
 
 }
 
 img{
   max-height: 200px;
   align-items: center;
+  
 }
-img :hover{
-
+img:hover {
+  opacity: 0.5;
+ 
 }
 /* .people{
   background-color: blueviolet;
@@ -36,11 +38,18 @@ align-items: center;
 overflow-y: scroll; 
 object-fit: scale-down;
 margin: 4px;
+border-radius: 5%;
+}
+
+.container:hover{
+
+  background-image: url("https://c.tenor.com/7TsSID1mzUIAAAAM/glitter-purple.gif");
+  background-size: cover;
 }
 
 .header{
   width: 100vw;
   height: 20vh;
-  background-color: yellow;
+  background-color: skyblue;
   border: solid 2px green;
 }
