@@ -5,3 +5,5 @@ Display Title, Poster, and Associated people by matching</br>
 To DO:
 <ul>Pretty up the CSS</ul>
 <ul>Add Search function</ul>
+<ul> Add redirect to subpages for each movie, to display description</ul>
+<ul>See HBO Max Studio Gibli page for inspiration</ul>

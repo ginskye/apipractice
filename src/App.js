@@ -6,8 +6,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       films: {}, //films is a hash, or object because we're attaching multiple pieces of info per unique url
-      people: [] //people can still be an array here
+      people: [], //people can still be an array here
+     turnon: false,
+     currentFilm:{},
+     currentChar: {}
       }
+      this.changeTurns = this.changeTurns.bind(this);
     this.displayFilm = this.displayFilm.bind(this); //need to use bind statement here because we're setting state within the displayFilm function
   }
   componentDidMount() { //this function runs once on load -> contains our displayFilm function, which calls both load/fetch functions
@@ -42,6 +46,24 @@ this.setState({
 })
 }
 
+showStuff(whichfilm){
+const film = this.state.currentFilm;  
+const character = this.state.currentChar;
+if(film.id ===whichfilm.id){
+  
+    return <h4>{film.description}
+    {character}</h4>;}
+
+else {
+  return <h2></h2>
+}
+}
+
+changeTurns(film, character){
+  this.setState({turnon: !this.state.turnon, currentFilm: film, currentChar: character
+  })
+}
+
   render() {
     let films = [];
     console.log(this.state.films); //lets us see what's in the film state, for troubleshooting
@@ -50,18 +72,19 @@ this.setState({
       <img src={this.state.films[i].image}></img></div>
 
            ) }   This is an old for loop that pushed to the display array prior to our new displayFilm function*/ 
-          
+    var counter = 0;      
     Object.values(this.state.films).forEach(film => { //Object is a helper class in JS -> lets you use objects as arrays: keys, values, combined value&key
       const characters = [];                          //this lets us loop over each item in our films (l 46) to assemble character info by film
       for (var i =0; i < film.characters.length; i++){ //loop to put each character inside of the characters display array (l 55)
-        characters.push(<p>{film.characters[i]}</p>)
+        characters.push(<h4>{film.characters[i]} </h4>)
       }
-      films.push(<div className="container"><h1>{film.title}</h1><br></br>
-      {film.description}<p></p> {/* <!---pushes title, image, then entire characters display array for each item in films (l 46)---> */}
-      <img src={film.image}></img>
-      
-       {characters}
+      films.push(<div id={counter} className="container" onClick={()=>this.changeTurns(film, characters)}><h1>{film.title}</h1><br></br>
+      <p></p> {/* <!---pushes title, image, then entire characters display array for each item in films (l 46)---> */}
+     <img src={film.image}></img> {this.showStuff(film)}<br></br>
+        
       </div>)
+      console.log(counter);
+      counter = counter +1;
       
     });
     
@@ -76,7 +99,8 @@ this.setState({
 
     return (
       <div className="App">
-        
+        <div className="header" onClick={this.changeTurns}><h1>Studio Ghibli Films</h1>
+       </div>
         {films}
         
       </div>
