@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './Music.js' ;
 
 class App extends React.Component {
   constructor(props) {
@@ -9,13 +10,16 @@ class App extends React.Component {
       people: [], //people can still be an array here
      turnon: false,
      currentFilm:{},
-     currentChar: {}
+     currentChar: {},
+     music: false
       }
       this.changeTurns = this.changeTurns.bind(this);
     this.displayFilm = this.displayFilm.bind(this); //need to use bind statement here because we're setting state within the displayFilm function
+  this.audio = new Audio("totoro.mp3");
   }
   componentDidMount() { //this function runs once on load -> contains our displayFilm function, which calls both load/fetch functions
     this.displayFilm();
+    //this.audio.play();
   }
 
   async loadFilms() { //async is used here to allow us to tell it to wait until the fetch is done
@@ -46,7 +50,20 @@ this.setState({
 })
 }
 
-showStuff(whichfilm){
+playMusic(){ //turns music on or off when called in the OnClick event (in image)
+  if(this.state.music===true){
+  this.audio.play()}
+  else{
+    this.audio.pause()
+  }
+  this.setState({
+    music: !this.state.music
+  }
+
+  )
+}
+
+showStuff(whichfilm){ //checks if the film id matches the current id within the container div
 const film = this.state.currentFilm;  
 const character = this.state.currentChar;
 if(film.id ===whichfilm.id){
@@ -55,11 +72,11 @@ if(film.id ===whichfilm.id){
     {character}</h4>;}
 
 else {
-  return <h2></h2>
+  return <h2></h2> //this is blank because it returns nothing if it doesn't match
 }
 }
 
-changeTurns(film, character){
+changeTurns(film, character){ //sets the 'turnon' variable state in the onClick within the container div
   this.setState({turnon: !this.state.turnon, currentFilm: film, currentChar: character
   })
 }
@@ -81,7 +98,7 @@ changeTurns(film, character){
       films.push(<div id={counter} className="container" onClick={()=>this.changeTurns(film, characters)}><h1>{film.title}</h1><br></br>
       {film.release_date}<br></br>
       <p></p> {/* <!---pushes title, image, then entire characters display array for each item in films (l 46)---> */}
-     <img src={film.image}></img> {this.showStuff(film)}<br></br>
+     <img src={film.image} onClick={()=> this.playMusic()}></img> {this.showStuff(film)}<br></br>
         
       </div>)
       console.log(counter);
